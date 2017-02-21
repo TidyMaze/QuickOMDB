@@ -1,0 +1,38 @@
+<RelativeLayout
+    android:layout_height="match_parent"
+    android:layout_width="match_parent"
+    android:id="@+id/movie_detail"
+    android:orientation="vertical"
+    android:padding="10dp"
+    style="?android:attr/textAppearanceLarge"
+    tools:context="yaro.quickomdb.MovieDetailFragment"
+    xmlns:tools="http://schemas.android.com/tools"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <ImageView
+        android:id="@+id/posterImageView"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        tools:background="@mipmap/ic_launcher"
+        />
+
+    <TextView
+        android:id="@+id/titleTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="This is title"
+        android:layout_alignParentTop="true"
+        android:layout_toRightOf="@id/posterImageView"
+        android:layout_alignParentEnd="true"
+        android:textSize="30dp"/>
+
+    <TextView
+        android:id="@+id/plotTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="This is plot"
+        android:layout_below="@+id/titleTextView"
+        android:layout_toRightOf="@id/posterImageView"
+        android:layout_alignParentEnd="true" />
+</RelativeLayout>
+
