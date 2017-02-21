@@ -10,6 +10,7 @@ import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,9 +19,16 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import yaro.quickomdb.dummy.DummyContent;
 import yaro.quickomdb.model.Movie;
+import yaro.quickomdb.service.OmdbService;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -57,8 +65,31 @@ public class MovieListActivity extends AppCompatActivity {
         }
     }
 
-    private void setupRecyclerView(@NonNull RecyclerView recyclerView) {
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(DummyContent.ITEMS));
+    private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
+
+        Retrofit retrofit = new Retrofit.Builder()
+                .baseUrl("http://www.omdbapi.com")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+
+        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(new ArrayList<Movie>()));
+
+        OmdbService service = retrofit.create(OmdbService.class);
+        Call<OmdbService.OmdbResponse> moviesCall = service.findMovies("harry");
+        moviesCall.enqueue(new Callback<OmdbService.OmdbResponse>() {
+            @Override
+            public void onResponse(Call<OmdbService.OmdbResponse> call, Response<OmdbService.OmdbResponse> response) {
+                List<Movie> items = response.body().search;
+                Log.d("response body", response.body().toString());
+                Log.d("items", items.toString());
+                recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
+            }
+
+            @Override
+            public void onFailure(Call<OmdbService.OmdbResponse> call, Throwable t) {
+                Log.e("service","Failure getting movies",t);
+            }
+        });
     }
 
     public class SimpleItemRecyclerViewAdapter

@@ -1,14 +1,25 @@
 package yaro.quickomdb.model;
 
+import com.google.gson.annotations.SerializedName;
+
 /**
  * Created by yann on 21/02/17.
  */
 
 public class Movie {
+    @SerializedName("Title")
     private String title;
+
+    @SerializedName("Year")
     private int year;
+
+    @SerializedName("imdbID")
     private String imdbId;
+
+    @SerializedName("Type")
     private String type;
+
+    @SerializedName("Poster")
     private String poster;
 
 
@@ -58,5 +69,16 @@ public class Movie {
 
     public void setPoster(String poster) {
         this.poster = poster;
+    }
+
+    @Override
+    public String toString() {
+        return "Movie{" +
+                "title='" + title + '\'' +
+                ", year=" + year +
+                ", imdbId='" + imdbId + '\'' +
+                ", type='" + type + '\'' +
+                ", poster='" + poster + '\'' +
+                '}';
     }
 }
