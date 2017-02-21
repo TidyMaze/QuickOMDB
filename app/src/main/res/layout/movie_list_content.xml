@@ -11,7 +11,7 @@
         android:layout_height="75dp"
         android:scaleType="centerCrop"
         tools:background="@mipmap/ic_launcher"
-        />
+        android:layout_marginRight="10dp" />
 
     <TextView
         android:id="@+id/titleTextView"
