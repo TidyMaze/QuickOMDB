@@ -6,7 +6,6 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.http.GET;
-import retrofit2.http.Path;
 import retrofit2.http.Query;
 import yaro.quickomdb.model.Movie;
 
@@ -16,7 +15,7 @@ import yaro.quickomdb.model.Movie;
 
 public interface OmdbService {
 
-    class OmdbResponse {
+    class OmdbSearchResponse {
         @SerializedName("Search")
         public List<Movie> search;
 
@@ -27,7 +26,7 @@ public interface OmdbService {
 
         @Override
         public String toString() {
-            return "OmdbResponse{" +
+            return "OmdbSearchResponse{" +
                     "search=" + search +
                     ", totalResults=" + totalResults +
                     ", response=" + response +
@@ -36,6 +35,9 @@ public interface OmdbService {
     }
 
     @GET("?type=movie&r=json&page=1")
-    Call<OmdbResponse> findMovies(@Query("s") String search);
+    Call<OmdbSearchResponse> searchMovies(@Query("s") String search);
+
+    @GET("?type=movie&plot=long&r=json&tomatoes=true")
+    Call<Movie> findMovieById(@Query("i") String imdbId);
 }
 

@@ -28,7 +28,8 @@ public class MovieDetailFragment extends Fragment {
         super.onCreate(savedInstanceState);
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
-            mItem = DummyContent.ITEM_MAP.get(getArguments().getString(ARG_ITEM_ID));
+            String id = getArguments().getString(ARG_ITEM_ID);
+            mItem = DummyContent.ITEM_MAP.get(id);
 
             Activity activity = this.getActivity();
             Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);

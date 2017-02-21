@@ -2,14 +2,11 @@ package yaro.quickomdb;
 
 import android.content.Context;
 import android.content.Intent;
-import android.media.Image;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.Toolbar;
-import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -24,7 +21,6 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-import yaro.quickomdb.dummy.DummyContent;
 import yaro.quickomdb.model.Movie;
 import yaro.quickomdb.service.OmdbService;
 
@@ -75,10 +71,10 @@ public class MovieListActivity extends AppCompatActivity {
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(new ArrayList<Movie>()));
 
         OmdbService service = retrofit.create(OmdbService.class);
-        Call<OmdbService.OmdbResponse> moviesCall = service.findMovies("harry");
-        moviesCall.enqueue(new Callback<OmdbService.OmdbResponse>() {
+        Call<OmdbService.OmdbSearchResponse> moviesCall = service.searchMovies("harry");
+        moviesCall.enqueue(new Callback<OmdbService.OmdbSearchResponse>() {
             @Override
-            public void onResponse(Call<OmdbService.OmdbResponse> call, Response<OmdbService.OmdbResponse> response) {
+            public void onResponse(Call<OmdbService.OmdbSearchResponse> call, Response<OmdbService.OmdbSearchResponse> response) {
                 List<Movie> items = response.body().search;
                 Log.d("response body", response.body().toString());
                 Log.d("items", items.toString());
@@ -86,7 +82,7 @@ public class MovieListActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onFailure(Call<OmdbService.OmdbResponse> call, Throwable t) {
+            public void onFailure(Call<OmdbService.OmdbSearchResponse> call, Throwable t) {
                 Log.e("service","Failure getting movies",t);
             }
         });
