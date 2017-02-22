@@ -64,6 +64,24 @@ public class MovieDetailFragment extends Fragment {
                     if (mItem != null) {
                         ((TextView) rootView.findViewById(R.id.plotTextView)).setText(mItem.getPlot());
                         ((TextView) rootView.findViewById(R.id.yearTextView)).setText(Integer.toString(mItem.getYear()));
+                        ((TextView) rootView.findViewById(R.id.releasedTextView)).setText(mItem.getReleased());
+                        ((TextView) rootView.findViewById(R.id.runtimeTextView)).setText(mItem.getRuntime());
+                        ((TextView) rootView.findViewById(R.id.directorTextView)).setText(mItem.getDirector());
+                        ((TextView) rootView.findViewById(R.id.writerTextView)).setText(mItem.getWriter());
+                        ((TextView) rootView.findViewById(R.id.actorsTextView)).setText(mItem.getActors());
+                        ((TextView) rootView.findViewById(R.id.productionTextView)).setText(mItem.getProduction());
+                        ((TextView) rootView.findViewById(R.id.awardsTextView)).setText(mItem.getAwards());
+                        ((TextView) rootView.findViewById(R.id.metascoreTextView)).setText(mItem.getMetascore());
+                        ((TextView) rootView.findViewById(R.id.imdbRatingTextView)).setText(Float.toString(mItem.getImdbRating()));
+                        ((TextView) rootView.findViewById(R.id.tomatoTextView)).setText(String.format("Pro : %s%% - %s/10, User : %s%% - %s/10",
+                                Integer.toString(mItem.getTomatoMeter()),
+                                Float.toString(mItem.getTomatoRating()),
+                                Integer.toString(mItem.getTomatoUserMeter()),
+                                Float.toString(mItem.getTomatoUserRating())
+                        ));
+                        ((TextView) rootView.findViewById(R.id.tomatoConsensusTextView)).setText(mItem.getTomatoConsensus());
+                        ((TextView) rootView.findViewById(R.id.boxOfficeTextView)).setText(mItem.getBoxOffice());
+                        ((TextView) rootView.findViewById(R.id.websiteTextView)).setText(mItem.getWebsite());
 
                         Glide.with(rootView.getContext())
                                 .load(mItem.getPoster())

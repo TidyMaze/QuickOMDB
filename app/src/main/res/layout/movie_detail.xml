@@ -1,198 +1,402 @@
-<RelativeLayout
+<ScrollView
     android:layout_height="match_parent"
     android:layout_width="match_parent"
-    android:id="@+id/movie_detail"
-    android:orientation="vertical"
-    android:padding="10dp"
-    style="?android:attr/textAppearanceLarge"
-    tools:context="yaro.quickomdb.MovieDetailFragment"
-    xmlns:tools="http://schemas.android.com/tools"
-    xmlns:android="http://schemas.android.com/apk/res/android">
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools">
 
-    <ImageView
-        android:contentDescription="picture of the movie"
-        android:id="@+id/posterImageView"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        tools:background="@mipmap/ic_launcher"
-        android:layout_marginEnd="10dp" />
-
-    <TextView
-        android:layout_width="wrap_content"
+    <RelativeLayout
         android:layout_height="wrap_content"
-        android:id="@+id/countryTextView"
-        android:layout_alignParentTop="true"
-        android:layout_toEndOf="@+id/posterImageView"
-        tools:text="USA" />
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/yearTextView"
-        android:layout_alignParentEnd="true"
-        android:layout_toEndOf="@+id/countryTextView"
-        tools:text="2005" />
-    
-    <TextView
-        android:id="@+id/plotTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        tools:text="Harry Potter very long plot don't you think ?"
-        android:layout_below="@+id/countryTextView"
-        android:layout_alignStart="@+id/countryTextView"
-        android:layout_alignParentEnd="true" />
-    
-    <TextView
-        android:id="@+id/genreTextView"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_alignBottom="@id/posterImageView"
-        android:layout_toEndOf="@id/posterImageView"
-        android:layout_alignParentEnd="true"
-        tools:text="Action, Crime, Drama"
-        android:textStyle="bold"
-        />
-    
-    <TableLayout
-        android:id="@+id/tableFigures"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/posterImageView"
-        android:layout_marginBottom="10dp"
-        android:stretchColumns="*"
-        >
+        android:id="@+id/movie_detail"
+        android:padding="10dp"
+        style="?android:attr/textAppearanceLarge"
+        tools:context="yaro.quickomdb.MovieDetailFragment">
 
-        <TableRow
+        <ImageView
+            android:contentDescription="picture of the movie"
+            android:id="@+id/posterImageView"
+            android:layout_width="150dp"
+            android:layout_height="150dp"
+            tools:background="@mipmap/ic_launcher"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/countryTextView"
+            android:layout_alignParentTop="true"
+            android:layout_toEndOf="@+id/posterImageView"
+            android:layout_marginEnd="10dp"
+            tools:text="USA" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/yearTextView"
+            android:layout_alignParentEnd="true"
+            android:layout_toEndOf="@+id/countryTextView"
+            tools:text="2005" />
+
+        <TextView
+            android:id="@+id/plotTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            tools:text="When a mad man calling himself 'the Scorpio Killer' menaces the city, tough as nails San Francisco Police Inspector Harry Callahan is assigned to track down and ferret out the crazed psychopath."
+            android:layout_below="@+id/countryTextView"
+            android:layout_alignStart="@+id/countryTextView"
+            android:layout_alignParentEnd="true" />
+
+        <TextView
+            android:id="@+id/genreTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignBottom="@id/posterImageView"
+            android:layout_toEndOf="@id/posterImageView"
+            android:layout_alignParentEnd="true"
+            tools:text="Action, Crime, Drama"
+            android:textStyle="bold"
+            />
+
+        <TableLayout
+            android:id="@+id/tableFigures"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/posterImageView"
+            android:layout_marginBottom="10dp"
+            android:stretchColumns="*"
+            >
 
-            <TextView
-                android:text="Release date"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/labelReleased"
-                android:minWidth="200dp"
-                android:layout_weight="1" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/releasedTextView"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="23 Dec 1971" />
+                <TextView
+                    android:text="Release date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
 
-        </TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/releasedTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="23 Dec 1971" />
 
-        <TableRow
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="Runtime"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/runtimeTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="102 min" />
+
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/labelPeople"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableFigures"
+            android:text="People"
+            />
 
-            <TextView
-                android:text="Runtime"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/labelRuntime"
-                android:minWidth="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/runtimeTextView"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="102 min" />
-
-        </TableRow>
-    </TableLayout>
-
-    <TextView
-        android:id="@+id/labelPeople"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_below="@id/tableFigures"
-        android:text="People"
-        />
-
-    <TableLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_alignParentStart="true"
-        android:layout_below="@+id/labelPeople"
-        android:layout_marginBottom="10dp"
-        android:stretchColumns="*">
-
-        <TableRow
+        <TableLayout
+            android:id="@+id/tablePeople"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelPeople"
+            android:layout_marginBottom="10dp"
+            android:stretchColumns="*">
 
-            <TextView
-                android:text="Director"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/labelDirector"
-                android:minWidth="200dp"
-                android:layout_weight="1" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/directorTextView"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="Don Siegel" />
+                <TextView
+                    android:text="Director"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
 
-        </TableRow>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/directorTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="Don Siegel" />
 
-        <TableRow
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="Writer"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/writerTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="Harry Julian Fink (screenplay), Rita M. Fink (screenplay), Dean Riesner (screenplay), Harry Julian Fink (story), Rita M. Fink (story)" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
+
+                <TextView
+                    android:text="Actors"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/actorsTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="Clint Eastwood, Harry Guardino, Reni Santoni, John Vernon" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Production"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/productionTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="Warner Home Video" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/labelAudience"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tablePeople"
+            android:text="Audience"
+            />
 
-            <TextView
-                android:text="Writer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/labelWriter"
-                android:minWidth="200dp"
-                android:layout_weight="1" />
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/writerTextView"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="Harry Julian Fink (screenplay), Rita M. Fink (screenplay), Dean Riesner (screenplay), Harry Julian Fink (story), Rita M. Fink (story)" />
-        </TableRow>
-
-        <TableRow
+        <TableLayout
+            android:id="@+id/tableAudience"
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@+id/labelAudience"
+            android:layout_marginBottom="10dp"
+            android:stretchColumns="*">
 
-            <TextView
-                android:text="Actors"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:textStyle="bold"
-                android:id="@+id/labelActors"
-                android:minWidth="200dp"
-                android:layout_weight="1" />
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent" >
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:id="@+id/actorsTextView"
-                android:layout_weight="1"
-                android:gravity="end"
-                tools:text="Clint Eastwood, Harry Guardino, Reni Santoni, John Vernon" />
-        </TableRow>
-    </TableLayout>
+                <TextView
+                    android:text="Awards"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
 
-</RelativeLayout>
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/awardsTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="1 win &amp; 1 nomination." />
+            </TableRow>
 
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Metascore"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/metascoreTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="IMDB"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/imdbRatingTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="7.8" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Rotten Tomato"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tomatoTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="a - b - c - d" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Consensus"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/tomatoConsensusTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="N/A" />
+            </TableRow>
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="BoxOffice"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/boxOfficeTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="#1" />
+            </TableRow>
+        </TableLayout>
+
+        <TextView
+            android:id="@+id/labelLinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tableAudience"
+            android:text="Links"
+            />
+
+        <TableLayout
+            android:id="@+id/tableLinks"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_below="@id/labelLinks"
+            android:layout_marginBottom="10dp"
+            android:stretchColumns="*">
+
+            <TableRow
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:text="Website"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textStyle="bold"
+                    android:minWidth="200dp"
+                    android:layout_weight="1" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/websiteTextView"
+                    android:layout_weight="1"
+                    android:gravity="end"
+                    tools:text="http://website.com" />
+            </TableRow>
+        </TableLayout>
+    </RelativeLayout>
+</ScrollView>
