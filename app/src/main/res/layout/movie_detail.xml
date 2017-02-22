@@ -10,29 +10,189 @@
     xmlns:android="http://schemas.android.com/apk/res/android">
 
     <ImageView
+        android:contentDescription="picture of the movie"
         android:id="@+id/posterImageView"
         android:layout_width="150dp"
         android:layout_height="150dp"
         tools:background="@mipmap/ic_launcher"
-        />
+        android:layout_marginEnd="10dp" />
 
     <TextView
-        android:id="@+id/titleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="This is title"
+        android:id="@+id/countryTextView"
         android:layout_alignParentTop="true"
-        android:layout_toRightOf="@id/posterImageView"
-        android:layout_alignParentEnd="true"
-        android:textSize="30dp"/>
+        android:layout_toEndOf="@+id/posterImageView"
+        tools:text="USA" />
 
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:id="@+id/yearTextView"
+        android:layout_alignParentEnd="true"
+        android:layout_toEndOf="@+id/countryTextView"
+        tools:text="2005" />
+    
     <TextView
         android:id="@+id/plotTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        tools:text="This is plot"
-        android:layout_below="@+id/titleTextView"
-        android:layout_toRightOf="@id/posterImageView"
+        tools:text="Harry Potter very long plot don't you think ?"
+        android:layout_below="@+id/countryTextView"
+        android:layout_alignStart="@+id/countryTextView"
         android:layout_alignParentEnd="true" />
+    
+    <TextView
+        android:id="@+id/genreTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignBottom="@id/posterImageView"
+        android:layout_toEndOf="@id/posterImageView"
+        android:layout_alignParentEnd="true"
+        tools:text="Action, Crime, Drama"
+        android:textStyle="bold"
+        />
+    
+    <TableLayout
+        android:id="@+id/tableFigures"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/posterImageView"
+        android:layout_marginBottom="10dp"
+        android:stretchColumns="*"
+        >
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Release date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/labelReleased"
+                android:minWidth="200dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/releasedTextView"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="23 Dec 1971" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Runtime"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/labelRuntime"
+                android:minWidth="200dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/runtimeTextView"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="102 min" />
+
+        </TableRow>
+    </TableLayout>
+
+    <TextView
+        android:id="@+id/labelPeople"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tableFigures"
+        android:text="People"
+        />
+
+    <TableLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_below="@+id/labelPeople"
+        android:layout_marginBottom="10dp"
+        android:stretchColumns="*">
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/labelDirector"
+                android:minWidth="200dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/directorTextView"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="Don Siegel" />
+
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Writer"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/labelWriter"
+                android:minWidth="200dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/writerTextView"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="Harry Julian Fink (screenplay), Rita M. Fink (screenplay), Dean Riesner (screenplay), Harry Julian Fink (story), Rita M. Fink (story)" />
+        </TableRow>
+
+        <TableRow
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" >
+
+            <TextView
+                android:text="Actors"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:id="@+id/labelActors"
+                android:minWidth="200dp"
+                android:layout_weight="1" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/actorsTextView"
+                android:layout_weight="1"
+                android:gravity="end"
+                tools:text="Clint Eastwood, Harry Guardino, Reni Santoni, John Vernon" />
+        </TableRow>
+    </TableLayout>
+
 </RelativeLayout>
 

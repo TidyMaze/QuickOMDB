@@ -50,13 +50,13 @@ public class Movie {
     private String poster;
 
     @SerializedName("Metascore")
-    private int metascore;
+    private String metascore;
 
     @SerializedName("imdbRating")
     private float imdbRating;
 
     @SerializedName("imdbVotes")
-    private float imdbVotes;
+    private String imdbVotes;
 
     @SerializedName("imdbID")
     private String imdbId;
@@ -68,7 +68,7 @@ public class Movie {
     private int tomatoMeter;
 
     @SerializedName("tomatoImage")
-    private String tomatoimage;
+    private String tomatoImage;
 
     @SerializedName("tomatoRating")
     private float tomatoRating;
@@ -144,7 +144,7 @@ public class Movie {
                 ", imdbId='" + imdbId + '\'' +
                 ", type='" + type + '\'' +
                 ", tomatoMeter=" + tomatoMeter +
-                ", tomatoimage='" + tomatoimage + '\'' +
+                ", tomatoTmage='" + tomatoImage + '\'' +
                 ", tomatoRating=" + tomatoRating +
                 ", tomatoReviews=" + tomatoReviews +
                 ", tomatoFresh=" + tomatoFresh +
@@ -274,11 +274,11 @@ public class Movie {
         this.poster = poster;
     }
 
-    public int getMetascore() {
+    public String getMetascore() {
         return metascore;
     }
 
-    public void setMetascore(int metascore) {
+    public void setMetascore(String metascore) {
         this.metascore = metascore;
     }
 
@@ -290,11 +290,11 @@ public class Movie {
         this.imdbRating = imdbRating;
     }
 
-    public float getImdbVotes() {
+    public String getImdbVotes() {
         return imdbVotes;
     }
 
-    public void setImdbVotes(float imdbVotes) {
+    public void setImdbVotes(String imdbVotes) {
         this.imdbVotes = imdbVotes;
     }
 
@@ -322,12 +322,12 @@ public class Movie {
         this.tomatoMeter = tomatoMeter;
     }
 
-    public String getTomatoimage() {
-        return tomatoimage;
+    public String getTomatoImage() {
+        return tomatoImage;
     }
 
-    public void setTomatoimage(String tomatoimage) {
-        this.tomatoimage = tomatoimage;
+    public void setTomatoImage(String tomatoImage) {
+        this.tomatoImage = tomatoImage;
     }
 
     public float getTomatoRating() {

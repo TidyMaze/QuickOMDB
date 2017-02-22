@@ -15,6 +15,8 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
+import com.google.gson.Gson;
+import com.google.gson.GsonBuilder;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -63,9 +65,12 @@ public class MovieListActivity extends AppCompatActivity {
 
     private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
 
+        Gson gson = new GsonBuilder()
+                .create();
+
         Retrofit retrofit = new Retrofit.Builder()
                 .baseUrl("http://www.omdbapi.com")
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
         recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(new ArrayList<Movie>()));

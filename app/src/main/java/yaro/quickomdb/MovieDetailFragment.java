@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,13 +13,22 @@ import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 
+import java.util.List;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import yaro.quickomdb.dummy.DummyContent;
 import yaro.quickomdb.model.Movie;
+import yaro.quickomdb.service.OmdbService;
 
 public class MovieDetailFragment extends Fragment {
 
     public static final String ARG_ITEM_ID = "item_id";
     private Movie mItem;
+    private View rootView;
 
     public MovieDetailFragment() {
     }
@@ -29,32 +39,55 @@ public class MovieDetailFragment extends Fragment {
 
         if (getArguments().containsKey(ARG_ITEM_ID)) {
             String id = getArguments().getString(ARG_ITEM_ID);
-            mItem = DummyContent.ITEM_MAP.get(id);
+            Log.i("Detail imdbId", id);
 
-            Activity activity = this.getActivity();
-            Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);
-            if (appBarLayout != null) {
-                appBarLayout.setTitle(mItem.getTitle());
-            }
+            Retrofit retrofit = new Retrofit.Builder()
+                    .baseUrl("http://www.omdbapi.com")
+                    .addConverterFactory(GsonConverterFactory.create())
+                    .build();
+
+            OmdbService service = retrofit.create(OmdbService.class);
+            Call<Movie> moviesCall = service.findMovieById(id);
+            moviesCall.enqueue(new Callback<Movie>() {
+                @Override
+                public void onResponse(Call<Movie> call, Response<Movie> response) {
+                    Movie item = response.body();
+                    Log.d("response body", response.body().toString());
+                    Log.d("item", item.toString());
+                    mItem = item;
+                    Activity activity = MovieDetailFragment.this.getActivity();
+                    Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);
+                    if (appBarLayout != null) {
+                        appBarLayout.setTitle(mItem.getTitle());
+                    }
+
+                    if (mItem != null) {
+                        ((TextView) rootView.findViewById(R.id.plotTextView)).setText(mItem.getPlot());
+                        ((TextView) rootView.findViewById(R.id.yearTextView)).setText(Integer.toString(mItem.getYear()));
+
+                        Glide.with(rootView.getContext())
+                                .load(mItem.getPoster())
+                                .centerCrop()
+                                .crossFade()
+                                .into(((ImageView) rootView.findViewById(R.id.posterImageView)));
+                    } else {
+                        Log.d("item", "not loaded");
+                        ((TextView) rootView.findViewById(R.id.plotTextView)).setText("Select a movie");
+                    }
+                }
+
+                @Override
+                public void onFailure(Call<Movie> call, Throwable t) {
+                    Log.e("service","Failure getting movie",t);
+                }
+            });
         }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View rootView = inflater.inflate(R.layout.movie_detail, container, false);
-
-        if (mItem != null) {
-            ((TextView) rootView.findViewById(R.id.titleTextView)).setText(mItem.getTitle());
-            ((TextView) rootView.findViewById(R.id.plotTextView)).setText("not done yet");
-
-            Glide.with(rootView.getContext())
-                .load(mItem.getPoster())
-                .centerCrop()
-                .crossFade()
-                .into(((ImageView) rootView.findViewById(R.id.posterImageView)));
-        }
-
+        rootView = inflater.inflate(R.layout.movie_detail, container, false);
         return rootView;
     }
 }
