@@ -54,43 +54,37 @@ public class MovieDetailFragment extends Fragment {
                     Log.d("response body", response.body().toString());
                     Log.d("item", item.toString());
                     mItem = item;
-                    Activity activity = MovieDetailFragment.this.getActivity();
-                    Toolbar appBarLayout = (Toolbar) activity.findViewById(R.id.toolbar);
-                    if (appBarLayout != null) {
-                        appBarLayout.setTitle(mItem.getTitle());
+
+                    ((TextView) rootView.findViewById(R.id.plotTextView)).setText(mItem.getPlot());
+                    ((TextView) rootView.findViewById(R.id.yearTextView)).setText(Integer.toString(mItem.getYear()));
+                    ((TextView) rootView.findViewById(R.id.releasedTextView)).setText(mItem.getReleased());
+                    ((TextView) rootView.findViewById(R.id.runtimeTextView)).setText(mItem.getRuntime());
+                    ((TextView) rootView.findViewById(R.id.directorTextView)).setText(mItem.getDirector());
+                    ((TextView) rootView.findViewById(R.id.writerTextView)).setText(mItem.getWriter());
+                    ((TextView) rootView.findViewById(R.id.actorsTextView)).setText(mItem.getActors());
+                    ((TextView) rootView.findViewById(R.id.productionTextView)).setText(mItem.getProduction());
+                    ((TextView) rootView.findViewById(R.id.awardsTextView)).setText(mItem.getAwards());
+                    ((TextView) rootView.findViewById(R.id.metascoreTextView)).setText(mItem.getMetascore());
+                    ((TextView) rootView.findViewById(R.id.imdbRatingTextView)).setText(Float.toString(mItem.getImdbRating()));
+                    ((TextView) rootView.findViewById(R.id.tomatoTextView)).setText(String.format("Pro : %s%% - %s/10, User : %s%% - %s/10",
+                            Integer.toString(mItem.getTomatoMeter()),
+                            Float.toString(mItem.getTomatoRating()),
+                            Integer.toString(mItem.getTomatoUserMeter()),
+                            Float.toString(mItem.getTomatoUserRating())
+                    ));
+                    ((TextView) rootView.findViewById(R.id.tomatoConsensusTextView)).setText(mItem.getTomatoConsensus());
+                    ((TextView) rootView.findViewById(R.id.boxOfficeTextView)).setText(mItem.getBoxOffice());
+                    ((TextView) rootView.findViewById(R.id.websiteTextView)).setText(mItem.getWebsite());
+
+                    Toolbar toolbar = (Toolbar) getActivity().findViewById(R.id.toolbar_detail);
+                    if(toolbar != null){
+                        toolbar.setTitle(mItem.getTitle());
                     }
 
-                    if (mItem != null) {
-                        ((TextView) rootView.findViewById(R.id.plotTextView)).setText(mItem.getPlot());
-                        ((TextView) rootView.findViewById(R.id.yearTextView)).setText(Integer.toString(mItem.getYear()));
-                        ((TextView) rootView.findViewById(R.id.releasedTextView)).setText(mItem.getReleased());
-                        ((TextView) rootView.findViewById(R.id.runtimeTextView)).setText(mItem.getRuntime());
-                        ((TextView) rootView.findViewById(R.id.directorTextView)).setText(mItem.getDirector());
-                        ((TextView) rootView.findViewById(R.id.writerTextView)).setText(mItem.getWriter());
-                        ((TextView) rootView.findViewById(R.id.actorsTextView)).setText(mItem.getActors());
-                        ((TextView) rootView.findViewById(R.id.productionTextView)).setText(mItem.getProduction());
-                        ((TextView) rootView.findViewById(R.id.awardsTextView)).setText(mItem.getAwards());
-                        ((TextView) rootView.findViewById(R.id.metascoreTextView)).setText(mItem.getMetascore());
-                        ((TextView) rootView.findViewById(R.id.imdbRatingTextView)).setText(Float.toString(mItem.getImdbRating()));
-                        ((TextView) rootView.findViewById(R.id.tomatoTextView)).setText(String.format("Pro : %s%% - %s/10, User : %s%% - %s/10",
-                                Integer.toString(mItem.getTomatoMeter()),
-                                Float.toString(mItem.getTomatoRating()),
-                                Integer.toString(mItem.getTomatoUserMeter()),
-                                Float.toString(mItem.getTomatoUserRating())
-                        ));
-                        ((TextView) rootView.findViewById(R.id.tomatoConsensusTextView)).setText(mItem.getTomatoConsensus());
-                        ((TextView) rootView.findViewById(R.id.boxOfficeTextView)).setText(mItem.getBoxOffice());
-                        ((TextView) rootView.findViewById(R.id.websiteTextView)).setText(mItem.getWebsite());
-
-                        Glide.with(rootView.getContext())
-                                .load(mItem.getPoster())
-                                .centerCrop()
-                                .crossFade()
-                                .into(((ImageView) rootView.findViewById(R.id.posterImageView)));
-                    } else {
-                        Log.d("item", "not loaded");
-                        ((TextView) rootView.findViewById(R.id.plotTextView)).setText("Select a movie");
-                    }
+                    Glide.with(rootView.getContext())
+                        .load(mItem.getPoster())
+                        .crossFade()
+                        .into(((ImageView) rootView.findViewById(R.id.posterImageView)));
                 }
 
                 @Override

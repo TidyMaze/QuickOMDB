@@ -105,27 +105,23 @@ public class MovieListActivity extends AppCompatActivity {
 
             Glide.with(MovieListActivity.this)
                 .load(holder.mItem.getPoster())
-                .centerCrop()
                 .crossFade()
                 .into(holder.mPosterView);
 
-            holder.mView.setOnClickListener(new View.OnClickListener() {
-                @Override
-                public void onClick(View v) {
-                    if (mTwoPane) {
-                        Bundle arguments = new Bundle();
-                        arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getImdbId());
-                        MovieDetailFragment fragment = new MovieDetailFragment();
-                        fragment.setArguments(arguments);
-                        getSupportFragmentManager().beginTransaction()
-                                .replace(R.id.movie_detail_container, fragment)
-                                .commit();
-                    } else {
-                        Context context = v.getContext();
-                        Intent intent = new Intent(context, MovieDetailActivity.class);
-                        intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getImdbId());
-                        context.startActivity(intent);
-                    }
+            holder.mView.setOnClickListener(v -> {
+                if (mTwoPane) {
+                    Bundle arguments = new Bundle();
+                    arguments.putString(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getImdbId());
+                    MovieDetailFragment fragment = new MovieDetailFragment();
+                    fragment.setArguments(arguments);
+                    getSupportFragmentManager().beginTransaction()
+                        .replace(R.id.movie_detail_container, fragment)
+                        .commit();
+                } else {
+                    Context context = v.getContext();
+                    Intent intent = new Intent(context, MovieDetailActivity.class);
+                    intent.putExtra(MovieDetailFragment.ARG_ITEM_ID, holder.mItem.getImdbId());
+                    context.startActivity(intent);
                 }
             });
         }
