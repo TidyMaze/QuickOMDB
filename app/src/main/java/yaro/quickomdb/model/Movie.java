@@ -65,34 +65,34 @@ public class Movie {
     private String type;
 
     @SerializedName("tomatoMeter")
-    private int tomatoMeter;
+    private String tomatoMeter;
 
     @SerializedName("tomatoImage")
     private String tomatoImage;
 
     @SerializedName("tomatoRating")
-    private float tomatoRating;
+    private String tomatoRating;
 
     @SerializedName("tomatoReviews")
-    private int tomatoReviews;
+    private String tomatoReviews;
 
     @SerializedName("tomatoFresh")
-    private int tomatoFresh;
+    private String tomatoFresh;
 
     @SerializedName("tomatoRotten")
-    private int tomatoRotten;
+    private String tomatoRotten;
 
     @SerializedName("tomatoConsensus")
     private String tomatoConsensus;
 
     @SerializedName("tomatoUserMeter")
-    private int tomatoUserMeter;
+    private String tomatoUserMeter;
 
     @SerializedName("tomatoUserRating")
-    private float tomatoUserRating;
+    private String tomatoUserRating;
 
     @SerializedName("tomatoUserReviews")
-    private int tomatoUserReviews;
+    private String tomatoUserReviews;
 
     @SerializedName("tomatoURL")
     private String tomatoUrl;
@@ -314,11 +314,11 @@ public class Movie {
         this.type = type;
     }
 
-    public int getTomatoMeter() {
+    public String getTomatoMeter() {
         return tomatoMeter;
     }
 
-    public void setTomatoMeter(int tomatoMeter) {
+    public void setTomatoMeter(String tomatoMeter) {
         this.tomatoMeter = tomatoMeter;
     }
 
@@ -330,35 +330,35 @@ public class Movie {
         this.tomatoImage = tomatoImage;
     }
 
-    public float getTomatoRating() {
+    public String getTomatoRating() {
         return tomatoRating;
     }
 
-    public void setTomatoRating(float tomatoRating) {
+    public void setTomatoRating(String tomatoRating) {
         this.tomatoRating = tomatoRating;
     }
 
-    public int getTomatoReviews() {
+    public String getTomatoReviews() {
         return tomatoReviews;
     }
 
-    public void setTomatoReviews(int tomatoReviews) {
+    public void setTomatoReviews(String tomatoReviews) {
         this.tomatoReviews = tomatoReviews;
     }
 
-    public int getTomatoFresh() {
+    public String getTomatoFresh() {
         return tomatoFresh;
     }
 
-    public void setTomatoFresh(int tomatoFresh) {
+    public void setTomatoFresh(String tomatoFresh) {
         this.tomatoFresh = tomatoFresh;
     }
 
-    public int getTomatoRotten() {
+    public String getTomatoRotten() {
         return tomatoRotten;
     }
 
-    public void setTomatoRotten(int tomatoRotten) {
+    public void setTomatoRotten(String tomatoRotten) {
         this.tomatoRotten = tomatoRotten;
     }
 
@@ -370,27 +370,27 @@ public class Movie {
         this.tomatoConsensus = tomatoConsensus;
     }
 
-    public int getTomatoUserMeter() {
+    public String getTomatoUserMeter() {
         return tomatoUserMeter;
     }
 
-    public void setTomatoUserMeter(int tomatoUserMeter) {
+    public void setTomatoUserMeter(String tomatoUserMeter) {
         this.tomatoUserMeter = tomatoUserMeter;
     }
 
-    public float getTomatoUserRating() {
+    public String getTomatoUserRating() {
         return tomatoUserRating;
     }
 
-    public void setTomatoUserRating(float tomatoUserRating) {
+    public void setTomatoUserRating(String tomatoUserRating) {
         this.tomatoUserRating = tomatoUserRating;
     }
 
-    public int getTomatoUserReviews() {
+    public String getTomatoUserReviews() {
         return tomatoUserReviews;
     }
 
-    public void setTomatoUserReviews(int tomatoUserReviews) {
+    public void setTomatoUserReviews(String tomatoUserReviews) {
         this.tomatoUserReviews = tomatoUserReviews;
     }
 
@@ -434,7 +434,7 @@ public class Movie {
         this.website = website;
     }
 
-    public boolean getResponse() {
+    public boolean isResponse() {
         return response;
     }
 

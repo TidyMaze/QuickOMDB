@@ -4,11 +4,15 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.RecyclerView;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.util.Log;
 import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
@@ -32,6 +36,7 @@ import java.util.List;
 public class MovieListActivity extends AppCompatActivity {
 
     private boolean mTwoPane;
+    private RecyclerView recyclerView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,16 +47,39 @@ public class MovieListActivity extends AppCompatActivity {
         setSupportActionBar(toolbar);
         toolbar.setTitle(getTitle());
 
-        View recyclerView = findViewById(R.id.movie_list);
-        assert recyclerView != null;
-        setupRecyclerView((RecyclerView) recyclerView);
+        recyclerView = (RecyclerView) findViewById(R.id.movie_list);
+        ((RecyclerView) recyclerView).setAdapter(new SimpleItemRecyclerViewAdapter(new ArrayList<Movie>()));
 
         if (findViewById(R.id.movie_detail_container) != null) {
             mTwoPane = true;
         }
     }
 
-    private void setupRecyclerView(@NonNull final RecyclerView recyclerView) {
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.main_menu, menu);
+
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        SearchView searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                fetchMoviesAndShow(recyclerView, newText);
+                return true;
+            }
+        });
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    private void fetchMoviesAndShow(@NonNull final RecyclerView recyclerView, @NonNull String search) {
+        Log.i("Service", "Fetching movies from query : \"" + search + "\"");
 
         Gson gson = new GsonBuilder()
                 .create();
@@ -61,17 +89,19 @@ public class MovieListActivity extends AppCompatActivity {
                 .addConverterFactory(GsonConverterFactory.create(gson))
                 .build();
 
-        recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(new ArrayList<Movie>()));
-
         OmdbService service = retrofit.create(OmdbService.class);
-        Call<OmdbService.OmdbSearchResponse> moviesCall = service.searchMovies("harry");
+        Call<OmdbService.OmdbSearchResponse> moviesCall = service.searchMovies(search);
         moviesCall.enqueue(new Callback<OmdbService.OmdbSearchResponse>() {
             @Override
             public void onResponse(Call<OmdbService.OmdbSearchResponse> call, Response<OmdbService.OmdbSearchResponse> response) {
-                List<Movie> items = response.body().search;
-                Log.d("response body", response.body().toString());
-                Log.d("items", items.toString());
-                recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
+                if(response.body().response) {
+                    List<Movie> items = response.body().search;
+                    Log.d("response body", response.body().toString());
+                    Log.d("items", items.toString());
+                    recyclerView.setAdapter(new SimpleItemRecyclerViewAdapter(items));
+                } else {
+                    Log.e("Service","Error on fetching movies");
+                }
             }
 
             @Override

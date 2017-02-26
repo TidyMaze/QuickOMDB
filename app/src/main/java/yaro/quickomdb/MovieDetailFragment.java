@@ -67,10 +67,10 @@ public class MovieDetailFragment extends Fragment {
                     ((TextView) rootView.findViewById(R.id.metascoreTextView)).setText(mItem.getMetascore());
                     ((TextView) rootView.findViewById(R.id.imdbRatingTextView)).setText(Float.toString(mItem.getImdbRating()));
                     ((TextView) rootView.findViewById(R.id.tomatoTextView)).setText(String.format("Pro : %s%% - %s/10, User : %s%% - %s/10",
-                            Integer.toString(mItem.getTomatoMeter()),
-                            Float.toString(mItem.getTomatoRating()),
-                            Integer.toString(mItem.getTomatoUserMeter()),
-                            Float.toString(mItem.getTomatoUserRating())
+                            mItem.getTomatoMeter(),
+                            mItem.getTomatoRating(),
+                            mItem.getTomatoUserMeter(),
+                            mItem.getTomatoUserRating()
                     ));
                     ((TextView) rootView.findViewById(R.id.tomatoConsensusTextView)).setText(mItem.getTomatoConsensus());
                     ((TextView) rootView.findViewById(R.id.boxOfficeTextView)).setText(mItem.getBoxOffice());
